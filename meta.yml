@@ -46,6 +46,7 @@ tested_coq_opam_versions:
 ## UNKNOWN: action_appendix:
 
 # Config Options
+sldg_dev_pkgs_needed: true
 community: false # By default projects are not part of coq-community
 coqdoc: true # By default we want coqdoc
 submodule: false # By default we don't want submodules
