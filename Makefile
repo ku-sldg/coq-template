@@ -1,20 +1,44 @@
-%: Makefile.coq phony
-	+make -f Makefile.coq $@
+# Coq project makefile
 
-all: Makefile.coq
-	+make -f Makefile.coq all
+# Documentation target.  Type "make DOC=all-gal.pdf" to make PDF.
+DOC	?= gallinahtml
 
-clean: Makefile.coq
-	+make -f Makefile.coq clean
-	rm -f Makefile.coq CoqMakefile.conf
+# File $(PROJ) contains the list of source files.
+# See "man coq_makefile" for its format.
+PROJ	= _CoqProject
 
-Makefile.coq: _CoqProject Makefile
-	coq_makefile -f _CoqProject | sed 's/$$(COQCHK) $$(COQCHKFLAGS) $$(COQLIBS)/$$(COQCHK) $$(COQCHKFLAGS) $$(subst -Q,-R,$$(COQLIBS))/' > Makefile.coq
+# Generated makefile
+COQMK	= coq.mk
 
-_CoqProject: ;
+TEMPLATE_REPO = https://github.com/coq-community/templates.git
 
-Makefile: ;
+COQBIN?=
+ifneq (,$(COQBIN))
+# add an ending /
+COQBIN:=$(COQBIN)/
+endif
 
-phony: ;
+all:	$(COQMK)
+	$(MAKE) -f $(COQMK)
+	$(MAKE) -f $(COQMK) $(DOC)
 
-.PHONY: all clean phony
+# Generates the meta files for the project
+meta: 
+	TMP=`mktemp -d` && \
+	git clone $(TEMPLATE_REPO) $(TMP) && \
+	$(TMP)/generate.sh
+
+$(COQMK): $(PROJ)
+	$(COQBIN)coq_makefile -o $(COQMK) -f $(PROJ)
+
+$(PROJ):
+	@echo make $@
+
+%:	$(COQMK) force
+	$(MAKE) -f $(COQMK) $@
+
+clean:	$(COQMK)
+	$(MAKE) -f $(COQMK) clean
+	rm $(COQMK) $(COQMK).conf
+
+.PHONY:	all clean force meta
