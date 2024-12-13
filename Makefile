@@ -10,7 +10,7 @@ PROJ	= _CoqProject
 # Generated makefile
 COQMK	= coq.mk
 
-TEMPLATE_REPO = https://github.com/coq-community/templates.git
+TEMPLATE_REPO = https://github.com/Durbatuluk1701/coq-templates.git
 
 COQBIN?=
 ifneq (,$(COQBIN))
@@ -18,27 +18,19 @@ ifneq (,$(COQBIN))
 COQBIN:=$(COQBIN)/
 endif
 
-all:	$(COQMK)
-	$(MAKE) -f $(COQMK)
-	$(MAKE) -f $(COQMK) $(DOC)
+all:	
+	dune build
+
+test: all
+	dune test
+
+clean:
+	dune clean
 
 # Generates the meta files for the project
 meta: 
 	TMP=`mktemp -d` && \
-	git clone $(TEMPLATE_REPO) $(TMP) && \
-	$(TMP)/generate.sh
+	git clone $(TEMPLATE_REPO) $$TMP && \
+	$$TMP/generate.sh
 
-$(COQMK): $(PROJ)
-	$(COQBIN)coq_makefile -o $(COQMK) -f $(PROJ)
-
-$(PROJ):
-	@echo make $@
-
-%:	$(COQMK) force
-	$(MAKE) -f $(COQMK) $@
-
-clean:	$(COQMK)
-	$(MAKE) -f $(COQMK) clean
-	rm $(COQMK) $(COQMK).conf
-
-.PHONY:	all clean force meta
+.PHONY:	all meta
