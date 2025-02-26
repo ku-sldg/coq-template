@@ -38,8 +38,6 @@ ci_test_dependants: false
 ci_extra_dev: false
 ci_cron_schedule: 0 0 * * 0 # Weekly at midnight sunday
 tested_coq_opam_versions:
-  - version: "8.18"
-  - version: "8.19"
   - version: "8.20"
   - version: "dev"
 
@@ -51,6 +49,7 @@ community: false # By default projects are not part of coq-community
 coqdoc: true # By default we want coqdoc
 submodule: false # By default we don't want submodules
 dune: true # By default we want dune builds
+ocaml_plugin: false # By default we don't assume plugins to use ocaml code
 # date: # by default we arent setting a date
 
 # Extra Metadata
@@ -61,8 +60,8 @@ license:
     identifier: CC-BY-SA-4.0
     file: LICENSE
 supported_coq_versions:
-  - text: "8.18 or later"
-    opam: '{ >= "8.18~" }'
+  - text: "8.20 later"
+    opam: '{ >= "8.20~" }'
 supported_ocaml_versions:
   - text: "4.12 or later"
     opam: '{ >= "4.12~" }'

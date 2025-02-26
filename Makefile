@@ -33,4 +33,7 @@ meta:
 	git clone $(TEMPLATE_REPO) $$TMP && \
 	$$TMP/generate.sh
 
+publish%:
+  opam publish --packages-directory=released/packaged --repo=ku-sldg-repo 
+
 .PHONY:	all meta
