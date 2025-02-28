@@ -1,7 +1,9 @@
 ---
 # This file is used to configure the project metadata
 fullname: <Project Name>
+# NOTE: The "shortname" is also the presumed name of the REPOSITORY this lives in!!!
 shortname: <Project Short Name> # NOTE: This is the library name that other projects will use to depend on/import from this project
+opam_name: <opam-name> # i.e. coq-Base64
 synopsis: "<Project Synopsis>"
 description: "<Project Description>"
 authors:
@@ -21,12 +23,21 @@ opam-file-maintainer: "30wthomas@ku.edu" # Need a strong default here or we will
 
 ######################################################
 # NOTE: Stuff below this line you should not need to change
+# other than on occassion the `config options`
 ######################################################
 # NOTE: check out https://github.com/coq-community/templates/blob/master/ref.yml for more possible values
 
 branch: main
 organization: ku-sldg
-# opam_name: <opam-name i.e. coq-<project-short-name>> # i.e. coq-Base64
+
+# Config Options
+sldg_dev_pkgs_needed: true
+community: false # By default projects are not part of coq-community
+coqdoc: true # By default we want coqdoc
+submodule: false # By default we don't want submodules
+dune: true # By default we want dune builds
+ocaml_plugin: false # By default we don't assume plugins to use ocaml code
+# date: # by default we arent setting a date
 
 # CI services - we only want GH Actions by default
 # NOTE: You should not need to change these usually!
@@ -42,15 +53,6 @@ tested_coq_opam_versions:
   - version: "dev"
 
 ## UNKNOWN: action_appendix:
-
-# Config Options
-sldg_dev_pkgs_needed: true
-community: false # By default projects are not part of coq-community
-coqdoc: true # By default we want coqdoc
-submodule: false # By default we don't want submodules
-dune: true # By default we want dune builds
-ocaml_plugin: false # By default we don't assume plugins to use ocaml code
-# date: # by default we arent setting a date
 
 # Extra Metadata
 # doi:
