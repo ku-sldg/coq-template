@@ -21,6 +21,21 @@ opam-file-maintainer: "30wthomas@ku.edu" # Need a strong default here or we will
 #   - name: "<Keyword1>"
 #   - name: "<Keyword2>"
 
+# dependencies:
+#   - description: '[Parsec](https://github.com/liyishuai/coq-parsec)'
+#     opam:
+#       name: coq-parsec
+#       version: '{ >= "0.2.0" }'
+#   - description: '[Menhir](http://gallium.inria.fr/~fpottier/menhir/)'
+#     opam:
+#       name: menhir
+#       version: '{ >= "20220210" }'
+#   - description: "[MenhirLib]\
+#                   (https://gitlab.inria.fr/fpottier/menhir/-/tree/master/coq-menhirlib/)"
+#     opam:
+#       name: coq-menhirlib
+#       version: '{ >= "20220210" }'
+
 ######################################################
 # NOTE: Stuff below this line you should not need to change
 # other than on occassion the `config options`
