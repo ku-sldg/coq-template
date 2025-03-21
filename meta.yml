@@ -10,6 +10,7 @@ authors:
   - name: "<Author Name>"
     email: "<Author Email>"
 opam-file-maintainer: "30wthomas@ku.edu" # Need a strong default here or we will accidentally email a Coq developer
+opam-file-version: "0.1.0"
 
 ######################################################
 # NOTE: Optional Extra Info
