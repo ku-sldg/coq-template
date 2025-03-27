@@ -33,6 +33,8 @@ dependencies:
       name: "rocq-candy"
       version: '{ >= "0.2.1" }'
       lib_name: "RocqCandy"
+coq_trans_deps_workaround: false # Default false if we dont need libraries with transitive dependencies, but if we do, then we need to set this to true
+# This is due to https://github.com/ocaml/dune/issues/11483
 
 ci_extra_repos:
   - description: "KU-SLDG Packages"
